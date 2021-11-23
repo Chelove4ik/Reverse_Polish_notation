@@ -4,6 +4,8 @@
 
 #include <string>
 #include <map>
+#include <functional>
+#include <cmath>
 
 class RPN {
  public:
@@ -11,14 +13,23 @@ class RPN {
 
     std::string infixToPostfix(const std::string &);
 
+    int solvePostfix(const std::string &input);
+
  protected:
-    std::map<char, uint8_t> allOperators = {
+    std::map<char, uint8_t> priorityOperations = {
             {'(', 255},
-            {'+', 1},
-            {'-', 1},
-            {'*', 2},
-            {'/', 2},
-            {'^', 3},
+            {'+', 0},
+            {'-', 0},
+            {'*', 1},
+            {'/', 1},
+            {'^', 2},
+    };
+    std::map<char, std::function<int(int, int)>> funcForOperation = {
+            {'+', [](int a, int b) { return a + b; }},
+            {'-', [](int a, int b) { return a - b; }},
+            {'*', [](int a, int b) { return a * b; }},
+            {'/', [](int a, int b) { return a / b; }},
+            {'^', [](int a, int b) { return std::pow(a, b); }},
     };
 };
 
