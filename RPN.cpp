@@ -52,9 +52,11 @@ int RPN::solvePostfix(const std::string &input) {
     char prev = ' ';
     int a, b;
     for (char cur: input) {
-        if (cur == ' ' && std::isdigit(prev)) {
-            stack.push(tempNum);
-            tempNum = 0;
+        if (cur == ' ') {
+            if (std::isdigit(prev)) {
+                stack.push(tempNum);
+                tempNum = 0;
+            }  // else nothing
         } else if (std::isdigit(cur)) {
             tempNum = tempNum * 10 + cur - '0';
         } else {
