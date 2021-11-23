@@ -11,11 +11,13 @@ class RPN {
  public:
     RPN() = default;
 
-    std::string infixToPostfix(const std::string &);
+    std::string infixToPostfix(const std::string &input);
 
     int solvePostfix(const std::string &input);
 
     int solveInfix(const std::string &input);
+
+    void addNewOperation(char ch, uint8_t priority, const std::function<int(int, int)> &func);
 
  protected:
     std::map<char, uint8_t> priorityOperations = {

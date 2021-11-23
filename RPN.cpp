@@ -80,3 +80,8 @@ int RPN::solvePostfix(const std::string &input) {
 int RPN::solveInfix(const std::string &input) {
     return solvePostfix(infixToPostfix(input));
 }
+
+void RPN::addNewOperation(char ch, uint8_t priority, const std::function<int(int, int)> &func) {
+    priorityOperations.emplace(ch, priority);
+    funcForOperation.emplace(ch, func);
+}
