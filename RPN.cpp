@@ -70,3 +70,7 @@ int RPN::solvePostfix(const std::string &input) {
     }
     return stack.top();
 }
+
+int RPN::solveInfix(const std::string &input) {
+    return solvePostfix(infixToPostfix(input));
+}

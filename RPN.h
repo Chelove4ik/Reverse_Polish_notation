@@ -15,6 +15,8 @@ class RPN {
 
     int solvePostfix(const std::string &input);
 
+    int solveInfix(const std::string &input);
+
  protected:
     std::map<char, uint8_t> priorityOperations = {
             {'(', 255},
