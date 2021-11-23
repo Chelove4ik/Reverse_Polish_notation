@@ -60,8 +60,12 @@ int RPN::solvePostfix(const std::string &input) {
         } else {
             if (funcForOperation.find(cur) == funcForOperation.end())
                 throw std::runtime_error("Error: unknown operator");
+            if (stack.empty())
+                throw std::runtime_error("Error in input");
             a = stack.top();
             stack.pop();
+            if (stack.empty())
+                throw std::runtime_error("Error in input");
             b = stack.top();
             stack.pop();
             stack.push(funcForOperation[cur](b, a));
